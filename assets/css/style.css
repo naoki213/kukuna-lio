@@ -216,11 +216,16 @@ h1, h2, h3, p { margin: 0; }
 }
 .biz--reverse .biz__figure { order: 2; }
 .biz__figure {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 30px 60px -30px rgba(13, 36, 64, .18);
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 30px 60px -30px rgba(13, 36, 64, .25);
 }
+.biz__figure img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.2s var(--ease);
+}
+.biz:hover .biz__figure img { transform: scale(1.04); }
 .biz__num {
   font-family: var(--font-en); font-size: 56px; font-weight: 300;
   line-height: 1; color: var(--blue-light);
@@ -244,19 +249,6 @@ h1, h2, h3, p { margin: 0; }
 }
 .biz__link svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.6; }
 .biz__link:hover { color: var(--blue); gap: 12px; }
-
-/* SVG figure parts */
-.fig-bg { fill: var(--ice-2); }
-.fig-card { fill: var(--white); stroke: var(--line); stroke-width: 1.2; }
-.fig-card--accent { fill: var(--navy); stroke: none; }
-.fig-screen { fill: var(--blue); opacity: .85; }
-.fig-line { fill: none; stroke: var(--navy); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.fig-line--w { stroke: var(--white); }
-.fig-dot-w { fill: var(--blue-light); }
-.fig-txt { font-family: var(--font-ja); font-size: 12px; fill: var(--text); text-anchor: middle; letter-spacing: .05em; }
-.fig-txt--in { font-size: 12px; fill: var(--navy); font-weight: 500; }
-.fig-arrow { fill: none; stroke: var(--blue); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.fig-arrow--sub { stroke: var(--blue-light); stroke-dasharray: 4 5; }
 
 /* ---------- Company ---------- */
 .profile { border-top: 1px solid var(--navy); }
@@ -382,7 +374,7 @@ h1, h2, h3, p { margin: 0; }
   .hero__bg::after { background: linear-gradient(180deg, rgba(246, 250, 253, .55) 0%, rgba(246, 250, 253, .85) 45%, rgba(246, 250, 253, .55) 100%); }
   .business__intro { margin-top: -16px; margin-bottom: 48px; }
   .business__list { gap: 72px; }
-  .biz__figure { padding: 12px; border-radius: 14px; }
+  .biz__figure { border-radius: 12px; }
   .biz__num { font-size: 44px; }
 
   .profile__row { grid-template-columns: 1fr; gap: 6px; padding: 22px 4px; }
