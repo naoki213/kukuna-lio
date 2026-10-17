@@ -102,28 +102,21 @@ h1, h2, h3, p { margin: 0; }
 }
 .hero__bg {
   position: absolute; inset: 0;
-  /* hero.jpg を置くと背景写真になります（なければグラデーションのみ） */
-  background:
-    linear-gradient(100deg, rgba(246, 250, 253, .96) 0%, rgba(246, 250, 253, .82) 45%, rgba(246, 250, 253, .2) 100%),
-    url("../images/hero.jpg") center / cover no-repeat,
-    radial-gradient(ellipse 60% 70% at 85% 30%, #cfe5f6 0%, transparent 70%),
-    radial-gradient(ellipse 50% 50% at 70% 85%, #e1eefa 0%, transparent 70%),
-    var(--ice-2);
+  overflow: hidden;
+}
+.hero__bg::before {
+  content: ""; position: absolute; inset: 0;
+  background: url("../images/hero.jpg") 70% center / cover no-repeat;
+  animation: heroZoom 20s ease-out both;
 }
 .hero__bg::after {
-  content: ""; position: absolute; right: -10vw; top: 50%;
-  width: 60vw; height: 60vw; max-width: 820px; max-height: 820px;
-  transform: translateY(-50%);
-  border-radius: 50%;
-  border: 1px solid rgba(47, 127, 193, .18);
-  box-shadow:
-    0 0 0 6vw rgba(47, 127, 193, .04),
-    0 0 0 12vw rgba(47, 127, 193, .03);
-  animation: ripple 9s ease-in-out infinite;
+  content: ""; position: absolute; inset: 0;
+  /* 文字の読みやすさのため左側を白くぼかす */
+  background: linear-gradient(100deg, rgba(246, 250, 253, .92) 0%, rgba(246, 250, 253, .7) 40%, rgba(246, 250, 253, 0) 75%);
 }
-@keyframes ripple {
-  0%, 100% { transform: translateY(-50%) scale(1); }
-  50% { transform: translateY(-50%) scale(1.04); }
+@keyframes heroZoom {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
 }
 .hero__inner {
   position: relative;
@@ -345,7 +338,7 @@ h1, h2, h3, p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .fade { opacity: 1; transform: none; transition: none; }
-  .hero__bg::after, .hero__scroll::after { animation: none; }
+  .hero__bg::before, .hero__scroll::after { animation: none; }
 }
 
 /* ---------- Responsive ---------- */
@@ -384,6 +377,9 @@ h1, h2, h3, p { margin: 0; }
   .section { padding: 96px 0; }
   .section__head { margin-bottom: 48px; }
   .hero__lead { font-size: 14px; }
+  .hero__title { font-size: 25px; letter-spacing: .06em; }
+  .hero__bg::before { background-position: 78% center; }
+  .hero__bg::after { background: linear-gradient(180deg, rgba(246, 250, 253, .55) 0%, rgba(246, 250, 253, .85) 45%, rgba(246, 250, 253, .55) 100%); }
   .business__intro { margin-top: -16px; margin-bottom: 48px; }
   .business__list { gap: 72px; }
   .biz__figure { padding: 12px; border-radius: 14px; }
