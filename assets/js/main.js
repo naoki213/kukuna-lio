@@ -14,6 +14,7 @@
   // スマホメニュー
   function setMenu(open) {
     nav.classList.toggle('is-open', open);
+    header.classList.toggle('is-menu-open', open);
     menuBtn.setAttribute('aria-expanded', String(open));
     menuBtn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
     document.body.style.overflow = open ? 'hidden' : '';
